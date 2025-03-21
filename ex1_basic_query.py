@@ -6,6 +6,7 @@
 #  Use of the RestAPI is a two step process. First we do a GET against 'auth/v1/token'. From this we looks for 'x-auth-token' 
 # in the returned headers. We then present this token instead of a username and password, in all subsequent PUT and POST calls
 #
+debug=False
 #debug=True   # uncomment to get verbose output
 
 # The usual ;ibraries for working with RestAPIs
@@ -19,7 +20,7 @@ import json
 # Create a function class so that we can pass against "Authentication": our token "Bearer 
 # We create this so we can use a simple way of passign the auth= string :-)
 class BearerAuth(requests.auth.AuthBase):
-    def __init__(self, token):
+    def __init__(self, token)
         self.token = token
     def __call__(self, r):
         r.headers["authorization"] = "Bearer " + self.token
@@ -34,16 +35,16 @@ server="https://console-ibm-data-cataloging.apps.fusionocp4.csitestlabs.co.uk/"
 sd_auth=('dannyk95','CsitestlabsMonday@2024')
 
 url= server + 'auth/v1/token'
-if (debug): print(url)
+if debug: print(url)
 try:
     # send a GET and return a response object
-    request = requests.get(url = url, auth=sd_auth, verify=None)
+    request = requests.get(url = url, auth=sd_auth, verify=False)
 except:
     print('An error has occurred.')
     sys.exit(1)
 
 auth=request.headers['x-auth-token']
-if (debug) print ("x-auth-token=" +auth)
+if debug: print ("x-auth-token=" +auth)
 
 
 #
@@ -73,13 +74,14 @@ myquery="""{
    "sort_by": [{"Site": "asc"},{"Owner": "asc"}],
    "limit": 100000
 }"""
-response = requests.post(url, headers=headers,  auth=BearerAuth(auth), data=myquery, verify=None)
-if (debug) {
+response = requests.post(url, headers=headers,  auth=BearerAuth(auth), data=myquery, verify=False)
+if debug:
   print("----------------------------")
-  for x in response.json():  print(x)
+  for x in response.json():
+    print(x)
 }
 
-if (debug) print(response.text)
+if debug: print(response.text)
 
 data=json.loads(response.text)
 print("----------------------------")
@@ -87,11 +89,10 @@ print(data['facet_tree'])
 #
 # Table 1 : The main output from the query 
 #
-if (debug) {
+if debug: 
    print("----------------------------")
    for x in json.loads(data['rows']):
        print (x)
-}    
 
 # Print Column Headers
 print("%5s %-15s %-15s %-15s %15s %15s %15s" % ("     ","Site","Owner","Data Source", "Count", "Sum", "Sumconsumbed"))
@@ -124,12 +125,11 @@ for x in data['facet_tree']:
 # Of the c. 12 tables, we will concentrate of the table of file count per username
 byowner= data['facet_tree']['OWNER']
 
-if (debug) {
+if debug:
   print("----------------------------")
   for a in json.loads(byowner):
     print(a)
   print(" ")
-}
 
 #cars=[]
 #data=[])
