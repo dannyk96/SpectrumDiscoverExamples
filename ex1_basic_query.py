@@ -20,7 +20,7 @@ import json
 # Create a function class so that we can pass against "Authentication": our token "Bearer 
 # We create this so we can use a simple way of passign the auth= string :-)
 class BearerAuth(requests.auth.AuthBase):
-    def __init__(self, token)
+    def __init__(self, token):
         self.token = token
     def __call__(self, r):
         r.headers["authorization"] = "Bearer " + self.token
@@ -79,13 +79,21 @@ if debug:
   print("----------------------------")
   for x in response.json():
     print(x)
-}
 
 if debug: print(response.text)
 
 data=json.loads(response.text)
-print("----------------------------")
-print(data['facet_tree'])
+
+if debug:
+  print("----------------------------")
+  for a in json.loads(byowner):
+    print(a)
+  print(" ")
+
+if debug:
+    print("----------------------------")
+    print(data['facet_tree'])
+
 #
 # Table 1 : The main output from the query 
 #
@@ -114,8 +122,9 @@ print()
 # Next print out the whole of 'facet_tree' for reference
 #   Afterwards we will pretty print out one or more pf the c. 12 tables
 #
-print("----------------------------")
-for x in data['facet_tree']:
+if debug:
+  print("----------------------------")
+  for x in data['facet_tree']:
     print (x)
     print (data['facet_tree'][x])
 
@@ -125,11 +134,6 @@ for x in data['facet_tree']:
 # Of the c. 12 tables, we will concentrate of the table of file count per username
 byowner= data['facet_tree']['OWNER']
 
-if debug:
-  print("----------------------------")
-  for a in json.loads(byowner):
-    print(a)
-  print(" ")
 
 #cars=[]
 #data=[])
