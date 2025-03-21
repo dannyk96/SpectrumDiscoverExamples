@@ -113,7 +113,7 @@ for a in json.loads(data['rows']):
    count=int(a['count'])
    sumx=int(a['sum'])
    sumconsumed=int(a['sumconsumed'])
-   print("%5s %-15s %-20s %-15s %15d %15.3f %15.3f" % ("     ",site,owner,source,count,sumx/1.e9,sumconsumed/1.e9))
+   print("%5s%-15s %-20s %-15s %15d %15.3f %15.3f" % ("    ",site,owner,source,count,sumx/1.e9,sumconsumed/1.e9))
 # print totals below the table
 print("     %s" % ("-"*100))
 print()
