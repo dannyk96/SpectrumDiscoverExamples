@@ -67,7 +67,6 @@ headers = {'Content-Type': 'application/json'}
 # An other example - to get info on all the files owned by a particular user
 # ToDo : Move this to its own example
 myquery="""{
-{
    "query": "",
    "filters": [
    {
