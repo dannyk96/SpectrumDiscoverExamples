@@ -103,8 +103,8 @@ if debug:
        print (x)
 
 # Print Column Headers
-print("%5s %-15s %-15s %-15s %15s %15s %15s" % ("     ","Site","Owner","Data Source", "Count", "Sum", "Sumconsumbed"))
-print("     %s" % ("-"*93))
+print("%5s %-15s %-20s %-15s%15s %15s %15s" % ("     ","Site","Owner","Data Source", "Count", "Sum (GB)", "Sum_consumed"))
+print("     %s" % ("-"*100))
 total=0
 for a in json.loads(data['rows']):
    site=a['site']
@@ -113,9 +113,9 @@ for a in json.loads(data['rows']):
    count=int(a['count'])
    sumx=int(a['sum'])
    sumconsumed=int(a['sumconsumed'])
-   print("%5s %-15s %-15s %-15s %15d %15.3f %15.3f" % ("     ",site,owner,source,count,sumx/1.e6,sumconsumed/1.e6))
+   print("%5s %-15s %-20s %-15s %15d %15.3f %15.3f" % ("     ",site,owner,source,count,sumx/1.e9,sumconsumed/1.e9))
 # print totals below the table
-print("     %s" % ("-"*93))
+print("     %s" % ("-"*100))
 print()
 
 #
