@@ -107,18 +107,28 @@ if debug:
    for x in json.loads(data['rows']):
        print (x)
 
+# Record is of the form:
+# {'path': '/gpfs/deleteme/.afm/', 'filename': '.afmctl', 'filetype': 'afmctl', 'datasource': 'deleteme', 
+# 'owner': 'root', 'group': 'root', 'revision': 'MO1', 'site': 'Dorset', 'platform': 'Spectrum Scale', 
+# 'cluster': 'csi_techlabs_ess32k.local', 'inode': 108548, 'permissions': '-rw-r--r--', 'fileset': 'root', 
+# 'uid': 0, 'gid': 0, 'recordversion': None, 'state': 'resdnt', 'migloc': 'NA', 
+# 'mtime': '2025-03-04T15:11:01.917', 'atime': '2025-03-05T10:45:14.971', 'ctime': '2025-03-04T15:11:01.694', 
+# 'tier': 'system', 'size': 1, 'fkey': 'csi_techlabs_ess32k.local_deleteme_108548', 'collection': 'spectrum-discover', 
+# 'temperature': None, 'duplicate': None, 'sizeconsumed': 0, 'nodename': None, 'filespace': None, 'mgmtclass': None, 
+# 'html': None, 'malignant': None, 'researchproject': None}
+
 # Print Column Headers
 print("%5s %-15s %-20s %-15s%15s %15s %15s" % ("     ","Site","Owner","Data Source", "Count", "Sum (GB)", "Sum_consumed"))
 print("     %s" % ("-"*100))
 total=0
 for a in json.loads(data['rows']):
-   site=a['site']
+   path=a['path']
+   filename=a['filename']
    owner=a['owner']
-   source=a['datasource']
-   count=int(a['count'])
-   sumx=int(a['sum'])
-   sumconsumed=int(a['sumconsumed'])
-   print("%5s%-15s %-20s %-15s %15d %15.3f %15.3f" % ("    ",site,owner,source,count,sumx/1.e9,sumconsumed/1.e9))
+   mtime=a['mtime']
+   size=int(a['size'])
+   duplcate=a['duplicate']
+   print("%5s%-15s %-20s %-15s %15d %15.3f %10s" % ("    ",filename, path, owener, mtime, size, duplicate)
 # print totals below the table
 print("     %s" % ("-"*100))
 print()
