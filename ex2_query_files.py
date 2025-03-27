@@ -127,8 +127,8 @@ for a in json.loads(data['rows']):
    owner=a['owner']
    mtime=a['mtime']
    size=int(a['size'])
-   duplcate=a['duplicate']
-   print("%5s%-15s %-20s %-15s %15d %15.3f %10s" % ("    ",filename, path, owener, mtime, size, duplicate)
+   duplicate=a['duplicate']
+   print("%5s%-15s %-20s %-15s %15d %15.3f %10s" % ("    ",filename, path, owner, mtime, size, duplicate))
 # print totals below the table
 print("     %s" % ("-"*100))
 print()
