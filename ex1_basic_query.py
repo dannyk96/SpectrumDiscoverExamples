@@ -32,7 +32,8 @@ class BearerAuth(requests.auth.AuthBase):
 server="https://console-ibm-data-cataloging.apps.fusionocp4.csitestlabs.co.uk/"
 
 # which pre-exisiting user to get a token for
-sd_auth=('dannyk95','CsitestlabsMonday@2024')
+sd_auth=('mick_jagger','rollingstones1!')
+sd_auth=('keith_richards','rollingstones1!')
 
 url= server + 'auth/v1/token'
 if debug: print(url)
